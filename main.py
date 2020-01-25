@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_basicauth import BasicAuth
 from textblob import TextBlob
 import pickle
@@ -32,7 +32,7 @@ def cotacao():
 	dados = request.get_json()
 	lista = [dados[col] for col in colunas]
 	predicao = modelo.predict([lista])
-	return (str(predicao))
+	return jsonify(preco=predicao[0])
 
 
 	
